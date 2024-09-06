@@ -1,0 +1,86 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public class NewBehaviourScript : MonoBehaviour
+{
+    [Header("velocidade")] 
+    public float current_speed;
+    public float base_speed = 3;
+    public float move_speed = 5;
+    public float gravidade = -9.81f;
+    private CharacterController _controller;
+    private Transform _mycam;
+    public float jump_force;
+    private Animator _animator;
+    private bool isgrounded;
+    public bool isrunning;
+    public LayerMask collisionmask;
+    public Transform pe;
+    // Start is called before the first frame update
+    void Start()
+    {
+        _controller = GetComponent<CharacterController>(); //atribui o obejto character controller a variavel
+        _mycam = Camera.main.transform;
+        _animator = GetComponent<Animator>();
+        current_speed = base_speed;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Inputhandler();
+
+        
+
+    }
+
+    void Inputhandler()
+    {
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        Vector3 movimento = new Vector3(horizontal, 0, vertical);
+        movimento = _mycam.TransformDirection(movimento);
+        movimento.y = 0;
+        
+        
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            isrunning = true;
+            current_speed = move_speed;
+            
+        }
+        else
+        {
+            isrunning = false;
+            current_speed = base_speed;
+        }
+        _animator.SetBool("Running",isrunning);
+        
+        isgrounded = Physics.CheckSphere(pe.position,0.3f,collisionmask);
+        _animator.SetBool("Grounded",isgrounded);
+
+        if (Input.GetButtonDown("Jump") && isgrounded == true)
+        {
+            gravidade = jump_force + current_speed / 2;
+            _animator.SetTrigger("Saltar");
+        }
+
+        if (gravidade > -9.78f)
+        {
+            gravidade += -9.78f * Time.deltaTime;
+        }
+
+        _controller.Move(movimento * Time.deltaTime * current_speed);
+        _controller.Move(new Vector3(0, gravidade, 0) * Time.deltaTime);
+
+        if (movimento != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(movimento), Time.deltaTime * 10);
+        }
+        _animator.SetBool("Andar", movimento != Vector3.zero);
+    }
+}
