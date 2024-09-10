@@ -13,6 +13,15 @@ public class NewBehaviourScript : MonoBehaviour
     private CharacterController _controller;
     private Transform _mycam;
     public float jump_force;
+
+    [Header("Combate")] 
+    public float alcance = 2f;
+    public int dano = 10;
+    public float cooldown = 1;
+    private float ultimoataque;
+    private LayerMask inimigo;
+    
+    
     private Animator _animator;
     private bool isgrounded;
     public bool isrunning;
@@ -82,5 +91,16 @@ public class NewBehaviourScript : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(movimento), Time.deltaTime * 10);
         }
         _animator.SetBool("Andar", movimento != Vector3.zero);
+
+        if (Input.GetButtonDown("Fire1") && Time.time >= ultimoataque + cooldown)
+        {
+            Atacar();
+        }
+    }
+
+    public void Atacar()
+    {
+        ultimoataque = Time.time;
+        _animator.SetTrigger("Atacar");
     }
 }
