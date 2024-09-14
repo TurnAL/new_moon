@@ -34,6 +34,7 @@ public class NewBehaviourScript : MonoBehaviour
         _mycam = Camera.main.transform;
         _animator = GetComponent<Animator>();
         current_speed = base_speed;
+        
 
     }
 
