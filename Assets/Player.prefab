@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 5737657940023474662}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,9 +91,88 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7359986181295606439}
   - {fileID: 3781907472931482429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &590432622255636670
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5737657940023474662}
+    m_Modifications:
+    - target: {fileID: 4078609743667862388, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_Name
+      value: FreeLook Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118351956726635944, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.973249
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118351956726635944, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.22975294
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750307849040273075, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 3588830755019957991}
+    - target: {fileID: 5750307849040273075, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LookAt
+      value: 
+      objectReference: {fileID: 3588830755019957991}
+    - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.8096849
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.3901992
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.557892
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+--- !u!4 &7359986181295606439 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
+  m_PrefabInstance: {fileID: 590432622255636670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8120266216928547475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -688,8 +767,11 @@ MonoBehaviour:
   move_speed: 5
   gravidade: -9.81
   jump_force: 3
+  alcance: 2
+  dano: 10
+  cooldown: 1
   isrunning: 0
   collisionmask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 64
   pe: {fileID: 7362342492982450241}

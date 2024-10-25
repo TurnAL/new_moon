@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 
@@ -34,6 +35,8 @@ public class NewBehaviourScript : MonoBehaviour
         _mycam = Camera.main.transform;
         _animator = GetComponent<Animator>();
         current_speed = base_speed;
+        Cursor.lockState = CursorLockMode.Locked;
+
         
 
     }
@@ -41,6 +44,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+     
         Inputhandler();
 
         
@@ -49,6 +53,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Inputhandler()
     {
+        
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
@@ -56,6 +61,12 @@ public class NewBehaviourScript : MonoBehaviour
         movimento = _mycam.TransformDirection(movimento);
         movimento.y = 0;
         
+        if(DialogueManager.Instance.isDialogueactive){
+            Cursor.lockState = CursorLockMode.None;
+            horizontal = 0f;
+            vertical = 0f;
+            
+        }
         
         if (Input.GetKey(KeyCode.LeftShift))
         {
