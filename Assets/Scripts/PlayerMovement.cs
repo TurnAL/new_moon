@@ -25,9 +25,12 @@ public class NewBehaviourScript : MonoBehaviour
     
     private Animator _animator;
     private bool isgrounded;
+    public bool iswalking;
     public bool isrunning;
     public LayerMask collisionmask;
     public Transform pe;
+    public AudioSource footsteps;
+    public AudioSource running;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,7 @@ public class NewBehaviourScript : MonoBehaviour
         _animator = GetComponent<Animator>();
         current_speed = base_speed;
         Cursor.lockState = CursorLockMode.Locked;
+        
 
         
 
@@ -61,12 +65,6 @@ public class NewBehaviourScript : MonoBehaviour
         movimento = _mycam.TransformDirection(movimento);
         movimento.y = 0;
         
-        if(DialogueManager.Instance.isDialogueactive){
-            Cursor.lockState = CursorLockMode.None;
-            horizontal = 0f;
-            vertical = 0f;
-            
-        }
         
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -76,6 +74,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else
         {
+            
             isrunning = false;
             current_speed = base_speed;
         }
@@ -97,7 +96,24 @@ public class NewBehaviourScript : MonoBehaviour
 
         _controller.Move(movimento * Time.deltaTime * current_speed);
         _controller.Move(new Vector3(0, gravidade, 0) * Time.deltaTime);
-
+        if(movimento != Vector3.zero && isgrounded == true)
+        {
+            if(isrunning == true)
+            {
+                footsteps.enabled = false; 
+                running.enabled = true;
+            }
+            else
+            {
+                footsteps.enabled = true;
+                running.enabled = false;
+            }
+        }
+        else
+        {
+            footsteps.enabled = false;
+            running.enabled = false;
+        }
         if (movimento != Vector3.zero)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(movimento), Time.deltaTime * 10);
