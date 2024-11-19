@@ -381,7 +381,7 @@ PrefabInstance:
       objectReference: {fileID: 3588830755019957991}
     - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8096849
+      value: 1.8096924
       objectReference: {fileID: 0}
     - target: {fileID: 7931488998486247961, guid: e73911f2fef29d51ea36b1edc241e92b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1039,3 +1039,4 @@ MonoBehaviour:
     m_Bits: 64
   pe: {fileID: 7362342492982450241}
   footsteps: {fileID: 0}
+  running: {fileID: 0}
