@@ -24,7 +24,7 @@ public class NewBehaviourScript : MonoBehaviour
     
     
     private Animator _animator;
-    private bool isgrounded;
+    public bool isgrounded;
     public bool iswalking;
     public bool isrunning;
     public LayerMask collisionmask;

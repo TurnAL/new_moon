@@ -1032,6 +1032,7 @@ MonoBehaviour:
   alcance: 2
   dano: 10
   cooldown: 1
+  isgrounded: 0
   iswalking: 0
   isrunning: 0
   collisionmask:
